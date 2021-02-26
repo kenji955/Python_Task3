@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>eelテスト</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <h2>eelテスト</h2>
+        <script type="text/javascript" src="./eel.js"></script>
+        <script type="text/javascript">
+            eel.expose(view_log_js);
+            function view_log_js(text) {
+                document.getElementById("log").value =
+                    document.getElementById("log").value + "\n" + text;
+            }
+        </script>
+
+        <script>
+            function check() {
+                if (document.getElementById("saerch_keyword").value == "") {
+                    //条件に一致する場合(メールアドレスが空の場合)
+                    alert("検索ワードを入力してください"); //エラーメッセージを出力
+                } else {
+                    //条件に一致しない場合(メールアドレスが入力されている場合)
+                    element = document.getElementById("target");
+                    radioNodeList = element.add_flg;
+                    add_flg = radioNodeList.value;
+                    eel.kimetsu_search(
+                        saerch_keyword.value,
+                        output_file.value,
+                        add_flg
+                    );
+                }
+            }
+        </script>
+
+        データ出力先<input type="text" id="output_file" />
+        <br />
+        検索ワード入力<input type="text" id="saerch_keyword" />
+        <br />
+        データがない時、追加登録を行う
+        <form id="target">
+            <input type="radio" name="add_flg" value="1" checked/> はい
+            <input type="radio" name="add_flg" value="2" /> いいえ
+        </form>
+        <!-- ↓onClickイベントを追加 -->
+        <input type="button" value="検索" onclick="check()" />
+        <br />
+        <textarea id="log" readonly class="logArea"></textarea>
+    </body>
+</html>
